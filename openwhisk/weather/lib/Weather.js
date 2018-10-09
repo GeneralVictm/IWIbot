@@ -1,6 +1,4 @@
 var request = require('request-promise');
-var weather_host = $WEATHER_COMPANY_URL;
-
 var today = new Date();
 var currentDay = parseInt(today.getDay());
 var weekday = new Array(7);
@@ -20,12 +18,16 @@ geocode[1] = 8.4036527; // longitude
 
 
 function main(params) {
+
+    var weather_host = params.__bx_creds.weatherinsights.url;
+
+        console.log(params);
     if ('__ow_body' in params) { // For testing this action!!
         params = JSON.parse(params.__ow_body);
     }
 
     console.log('------Weather Action started!------');
-    console.log('WeatherAction Params:' + JSON.stringify(params));
+    console.log('WeatherAction Params:' + JSON.stringify(params, null, 4));
     console.log('Day: ' + currentDay);
     console.log('DayString: ' + currentDayString);
     params.units = 'm';
